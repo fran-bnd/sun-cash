@@ -1,0 +1,58 @@
+<html>
+  <head>
+    <title>Login</title>
+  </head>
+  <style>
+    body,h1,h2,h3,h4,h5,h6 {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
+        font-weight: 800;
+        color:rgb(43, 253, 60);
+        padding: 5px;
+        text-align: center;
+        background-color: rgb(10, 55, 55);
+    }
+    </style>
+  <body>
+    <h2>Login</h2>
+    <form action="http://localhost:8080/account" method="post">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username">
+      <br><br>
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password">
+      <br><br>
+      <input type="submit" value="Login">
+    </form>
+    <br><br>
+    <h2>Account</h2>
+    <form action="http://localhost:8080/account" method="post">
+      <label for="account"></label>
+      <textarea id="account" name="account" placeholder="Balance $100.00"></textarea>
+      <br><br>
+      <input type="deposit" value="Deposit"><br>
+      <input type="withdraw" value="Withdraw"><br>
+      <input type="transfer" value="Transfer"><br>
+    </form>
+    <br><br>
+    <h1>Transactions</h1>
+    <div id="messages">
+      <!-- AJAX call to retrieve all messages -->
+      <textarea id="message" name="message">First transaction here...</textarea><br>
+      <textarea id="message" name="message">Second transaction here...</textarea><br>
+      <textarea id="message" name="message">Third transaction here...</textarea><br>
+    </div>
+  </body>
+  <script>
+    // Example AJAX call using jQuery to retrieve all messages
+    $(document).ready(function() {
+      $.ajax({
+        type: "GET",
+        url: "http://localhost:8080/messages",
+        success: function(data) {
+          // Add the retrieved messages to the messages div
+          $("#messages").html(data);
+        }
+      });
+    });
+  </script>
+</html>
