@@ -1,0 +1,30 @@
+#User Stories
+
+#1 As a new user I want to create a new checking account
+#2 As a user, I want to be able to login 
+#3 As a user I want to deposit a fund
+#4 As a user I want to withdraw funds
+#5 As a user I want to check my balance
+#6 As a user I want to transfer fund from one account to the other
+
+#DDBB
+
+User Table:
+-userId (PK)
+-username
+-password
+
+Account Table:
+-accountId (PK)
+-balance
+-userId (FKey)
+
+Transaction Table:
+-transactionId (PK)
+-transactionType
+-userId (FK references user(Id))
+-amount
+-timeStamp
+-accountId (FK references account(Id))
+
+
