@@ -14,18 +14,18 @@ create table bank_user (
 
 create table account (
     account_id int primary key auto_increment,
-    balance decimal,
+    balance bigint,
     account_user int,
     foreign key (account_user) references bank_user(user_id)
 );
 
 create table transactions (
-    transaction_id int primary key auto_increment,
-    transaction_type varchar(255),
-    amount decimal,
-    transaction_time timestamp,
-    account_user int,
-    foreign key (account_user) references bank_user(user_id),
-    account_id int,
-    foreign key (account_id) references account (account_id)
+    transactionID int primary key auto_increment,
+    transaction_type int,
+    amount bigint,
+    time timestamp default CURRENT_TIMESTAMP,
+    accountID_from int,
+    foreign key (accountID_from) references account(account_id),
+    accountID_to int,
+    foreign key (accountID_to) references account(account_id)
 );

@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
   <head>
     <title>Login</title>
@@ -13,46 +14,33 @@
     }
     </style>
   <body>
-    <h2>Login</h2>
-    <form action="http://localhost:8080/account" method="post">
-      <label for="username">Username</label>
-      <input type="text" id="username" name="username">
-      <br><br>
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password">
-      <br><br>
-      <input type="submit" value="Login">
-    </form>
+    <h3>Login</h3>
+      <form id="loginForm" method="post">
+        <label for="username">Username </label>
+        <input type="text" id="username" name="username"><br>
+        <br>
+        <label for="password">Password </label>
+        <input type="password" id="password" name="password"><br>
+        <br>
+        <input type="button" value="Login" onclick="login()">
+      </form>
     <br><br>
-    <h2>Account</h2>
-    <form action="http://localhost:8080/account" method="post">
+    <h1>Account</h1>
+    <div action="http://localhost:8080/users/accounts" method="post">
       <label for="account"></label>
       <textarea id="account" name="account" placeholder="Balance $100.00"></textarea>
       <br><br>
-      <input type="deposit" value="Deposit"><br>
-      <input type="withdraw" value="Withdraw"><br>
-      <input type="transfer" value="Transfer"><br>
-    </form>
+      <input type="submit" value="Deposit">
+      <input type="submit" value="Withdraw">
+      <input type="submit" value="Transfer">
+    </div>
     <br><br>
     <h1>Transactions</h1>
     <div id="messages">
-      <!-- AJAX call to retrieve all messages -->
       <textarea id="message" name="message">First transaction here...</textarea><br>
       <textarea id="message" name="message">Second transaction here...</textarea><br>
       <textarea id="message" name="message">Third transaction here...</textarea><br>
     </div>
   </body>
-  <script>
-    // Example AJAX call using jQuery to retrieve all messages
-    $(document).ready(function() {
-      $.ajax({
-        type: "GET",
-        url: "http://localhost:8080/messages",
-        success: function(data) {
-          // Add the retrieved messages to the messages div
-          $("#messages").html(data);
-        }
-      });
-    });
-  </script>
+  <script src="scripts.js"></script>
 </html>

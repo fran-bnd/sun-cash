@@ -19,9 +19,9 @@ public class Application {
 //      All needs to start using the API
         ConnectionSingleton.resetTestDatabase();
         BankController bankController = new BankController();
-        HttpClient webClient = HttpClient.newHttpClient();;
-        ObjectMapper objectMapper = new ObjectMapper();;
-        Javalin app = bankController.startAPI();;
+        HttpClient webClient = HttpClient.newHttpClient();
+        ObjectMapper objectMapper = new ObjectMapper();
+        Javalin app = bankController.startAPI();
         app.start(8080);
 
         // Interactive menu: 1. Create User
@@ -32,7 +32,7 @@ public class Application {
         System.out.println("1.2 Insert password:");
         String password1 = sc.nextLine();
 
-        // Call API to create new user in DDBB
+        // Call API to create new user in DB
         HttpRequest postRequest = HttpRequest.newBuilder()
                 .uri(URI.create("http://localhost:8080/register"))
                 .POST(HttpRequest.BodyPublishers.ofString("{" +
@@ -51,7 +51,7 @@ public class Application {
         System.out.println("2.2 Insert User password:");
         String loginPassword = sc.nextLine();
 
-        // Call API to login into user in DDBB
+        // Call API to login into user in DB
         HttpRequest loginRequest = HttpRequest.newBuilder()
                 .uri(URI.create("http://localhost:8080/login"))
                 .POST(HttpRequest.BodyPublishers.ofString("{" +

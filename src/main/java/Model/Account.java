@@ -11,22 +11,22 @@ public class Account {
      */
     private int account_id;
     /**
-     * aaccount balance that shows the amount of the user is having in th account
+     * aaccount balance_cents that shows the amount of the user is having in th account
      */
-    private double balance;
+    private long balance_cents;
 
     private int user;
 
-    public Account(){
+    public Account() {
     }
 
-    public Account(double balance) {
-        this.balance = balance;
+    public Account(long balance_cents) {
+        this.balance_cents = balance_cents;
     }
 
-    public Account(int account_id, double balance, int user){
+    public Account(int account_id, long balance_cents, int user){
         this.account_id = account_id;
-        this.balance = balance;
+        this.balance_cents = balance_cents;
         this.user = user;
     }
 
@@ -38,12 +38,12 @@ public class Account {
         this.account_id = account_id;
     }
 
-    public double getBalance() {
-        return balance;
+    public long getBalance() {
+        return balance_cents;
     }
 
-    public void setBalance(double balance) {
-        this.balance = balance;
+    public void setBalance(long balance_cents) {
+        this.balance_cents = balance_cents;
     }
 
     public int getUser() {
@@ -55,11 +55,15 @@ public class Account {
     }
 
     @Override
+    public String toString() {
+        return "Account{account_id=" + account_id + ", balance_cents=" + balance_cents + ", user=" + user;
+    }
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Account account = (Account)o;
-        return account_id == account.account_id && balance == account.balance &&
+        return account_id == account.account_id && balance_cents == account.balance_cents &&
             user == account.user;
     }
 }
