@@ -26,6 +26,14 @@ public class BankController {
         mapper = new ObjectMapper();
 
         Javalin app = Javalin.create();
+
+        // add CORS headers to allow requests from localhost:63342
+        app.before((ctx) -> {
+            ctx.header("Access-Control-Allow-Origin", "http://localhost:63342");
+            ctx.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+            ctx.header("Access-Control-Allow-Headers", "Content-Type");
+        });
+
         //1. Process registration - POST localhost:8080/register
         app.post("/register", this::registerHandler);
 

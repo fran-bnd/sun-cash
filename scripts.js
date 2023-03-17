@@ -1,22 +1,22 @@
-function login() {
-            const form = document.getElementById("loginForm");
-            const formData = new FormData(form);
+const loginForm = document.getElementById('loginForm');
 
-            const xhr = new XMLHttpRequest();
-            xhr.open("POST", "http://localhost:8080/login");
-            xhr.setRequestHeader("Content-Type", "application/json");
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    if (xhr.status === 200) {
-                        console.log(xhr.responseText);
-                    } else {
-                        console.error(xhr.statusText);
-                    }
-                }
-            };
-            const data = JSON.stringify({
-                username: formData.get("username"),
-                password: formData.get("password")
-            });
-            xhr.send(data);
-        }
+      loginForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // prevent the default form submission behavior
+
+        const formData = new FormData(loginForm);
+        console.log([...formData.entries()]);
+
+        fetch('http://localhost:8080/login', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data); // log the response from the server
+          // do something with the response, such as redirect to a new page
+        })
+        .catch(error => {
+          console.error(error); // log any errors that occur
+          // do something to handle the error, such as display an error message
+        });
+      });
